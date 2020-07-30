@@ -10,7 +10,7 @@ class App extends React.Component {
 
   onLoad = async () => {
     const response = await industries.get();
-    console.log("response", response.data);
+    // console.log("response", response.data);
     this.setState({ industries: response.data });
   };
 
@@ -18,10 +18,14 @@ class App extends React.Component {
     this.onLoad();
   }
 
+  onTermSubmit = (term) => {
+    console.log("term", term);
+  };
+
   render() {
     return (
       <Container>
-        <SearchBar />
+        <SearchBar onTermSubmit={this.onTermSubmit} />
         <Row>
           <Col>
             <IndustryList industries={this.state.industries} />
