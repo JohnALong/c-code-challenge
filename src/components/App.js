@@ -18,8 +18,21 @@ class App extends React.Component {
     this.onLoad();
   }
 
-  onTermSubmit = (term) => {
-    console.log("term", term);
+  onTermSubmit = (term, response) => {
+    // console.log("term", term);
+    // console.log("test", this.state.industries);
+    let filteredList = this.state.industries.filter((str) => {
+      //   console.log("str", str.title);
+      if (term === "") {
+        this.onLoad();
+      } else {
+        return str.title.includes(term);
+      }
+    });
+    // console.log("filteredList", filteredList);
+    this.setState({
+      industries: filteredList,
+    });
   };
 
   render() {

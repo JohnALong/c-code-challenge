@@ -13,7 +13,7 @@ class SearchBar extends React.Component {
   };
 
   render() {
-    console.log("props in searchbar", this.props);
+    // console.log("props in searchbar", this.props);
     return (
       <form onSubmit={this.onSearchSubmit}>
         <label>Key Word Search</label>
