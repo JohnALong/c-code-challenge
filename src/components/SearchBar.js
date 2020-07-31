@@ -4,10 +4,21 @@ class SearchBar extends React.Component {
   state = { term: "" };
 
   onInputChange = (e) => {
-    console.log("test", e.target.value);
+    this.setState({ term: e.target.value });
   };
+
+  onSearchSubmit = (e) => {
+    e.preventDefault();
+    this.props.onTermSubmit(this.state.term);
+  };
+
   render() {
-    return <input onChange={this.onInputChange}></input>;
+    return (
+      <form onSubmit={this.onSearchSubmit}>
+        <label>Key Word Search</label>
+        <input onChange={this.onInputChange}></input>
+      </form>
+    );
   }
 }
 

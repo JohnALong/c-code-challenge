@@ -10,7 +10,6 @@ class App extends React.Component {
 
   onLoad = async () => {
     const response = await industries.get();
-    console.log("response", response.data);
     this.setState({ industries: response.data });
   };
 
@@ -18,10 +17,30 @@ class App extends React.Component {
     this.onLoad();
   }
 
+  onTermSubmit = async (term, response) => {
+    const newFetch = await industries.get();
+    const testString = newFetch.data[0].sic_code.toString();
+
+    const filteredList = newFetch.data.filter((data) => {
+      if (term === "") {
+        this.onLoad();
+      } else if (isNaN(term) === true) {
+        return data.title.toLowerCase().includes(term.toLowerCase());
+      } else if (isNaN(term) === false) {
+        return data.sic_code.toString().includes(term);
+      } else {
+        return <div>Please Check Your Spelling</div>;
+      }
+    });
+    this.setState({
+      industries: filteredList,
+    });
+  };
+
   render() {
     return (
       <Container>
-        <SearchBar />
+        <SearchBar onTermSubmit={this.onTermSubmit} />
         <Row>
           <Col>
             <IndustryList industries={this.state.industries} />
