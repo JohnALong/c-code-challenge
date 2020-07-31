@@ -18,18 +18,22 @@ class App extends React.Component {
     this.onLoad();
   }
 
-  onTermSubmit = (term, response) => {
+  onTermSubmit = async (term, response) => {
+    const newFetch = await industries.get();
+    console.log("fetch test", newFetch.data);
     // console.log("term", term);
     // console.log("test", this.state.industries);
-    let filteredList = this.state.industries.filter((str) => {
+    const filteredList = newFetch.data.filter((str) => {
       //   console.log("str", str.title);
       if (term === "") {
         this.onLoad();
+      } else if (term !== "" && Number.isInteger(term) != true) {
+        return str.title.toLowerCase().includes(term.toLowerCase());
       } else {
-        return str.title.includes(term);
+        return <div>Please Check Your Spelling</div>;
       }
     });
-    // console.log("filteredList", filteredList);
+    console.log("filteredList", filteredList);
     this.setState({
       industries: filteredList,
     });
