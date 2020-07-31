@@ -3,7 +3,7 @@ import IndustryItem from "./IndustryItem";
 
 const IndustryList = (props) => {
   const renderedList = props.industries.map((industry) => {
-    return <IndustryItem industry={industry} />;
+    return <IndustryItem key={industry.sic_code} industry={industry} />;
   });
 
   if (renderedList.length != 0) {
