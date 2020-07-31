@@ -33,6 +33,7 @@ class SearchBar extends React.Component {
     if (e.target.value === "") {
       e.preventDefault();
     } else {
+      console.log("you're in the 3rd search submit");
       this.props.onSicThreeSubmit(this.state.term);
     }
   };

@@ -28,6 +28,7 @@ class App extends React.Component {
       } else if (isNaN(term) === false) {
         return data.sic_code.toString().includes(term);
       } else {
+        // console.log("in the else 1");
         return <div>Please Check Your Spelling</div>;
       }
     });
@@ -51,7 +52,7 @@ class App extends React.Component {
           return data.sic_code;
         }
       } else {
-        console.log("in the else");
+        // console.log("in the else 2");
         return <div>Please enter a single digit search parameter</div>;
       }
     });
@@ -72,11 +73,11 @@ class App extends React.Component {
       } else if (isNaN(term) === false) {
         // console.log("it's a number", term);
         if (term === data.sic_code.toString().slice(2, 3)) {
-          console.log("test 3rd box", data.sic_code.toString().slice(2, 3));
+          //   console.log("test 3rd box", data.sic_code.toString().slice(2, 3));
           return data.sic_code;
         }
       } else {
-        console.log("in the else");
+        // console.log("in the else 3");
         return <div>Please enter a single digit search parameter</div>;
       }
     });
