@@ -2,19 +2,21 @@ import React from "react";
 import SelectedIndustryItem from "./SelectedIndustryItem";
 
 const SelectedIndustriesList = (props) => {
-  console.log("props in sel ind list", props.selectedIndustries);
-  return <SelectedIndustryItem selectedIndustries={props.selectedIndustries} />;
-};
+  // console.log("props from sel ind list", props);
+  const renderedList = props.selectedIndustries.map((industry) => {
+    return (
+      <SelectedIndustryItem
+        selectedIndustries={industry}
+        key={industry.sic_code}
+      />
+    );
+  });
 
-// const SelectedIndustriesList = (props) => {
-//   console.log("props sel ind", props);
-//   if (props.selectedIndustries.length != 0) {
-//     const renderedList = props.industries.map((industry) => {
-//       return <SelectedIndustryItem industry={industry} />;
-//     });
-//   } else {
-//     return <div>This will be the shopping cart</div>;
-//   }
-// };
+  if (renderedList.length !== 0) {
+    return <div>{renderedList}</div>;
+  } else {
+    return <div>This will be the cart</div>;
+  }
+};
 
 export default SelectedIndustriesList;

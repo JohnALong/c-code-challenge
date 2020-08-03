@@ -1,11 +1,11 @@
 import React from "react";
 
-const SelectedIndustryItem = (props) => {
-  console.log("ind item props", props.selectedIndustries.title);
+const SelectedIndustryItem = ({ selectedIndustries }) => {
+  //   console.log("sel industry from item", selectedIndustries);
   return (
     <div>
-      <div>{props.selectedIndustries.title}</div>
-      <div>{props.selectedIndustries.sic_code}</div>
+      <div>{selectedIndustries.title}</div>
+      <div>{selectedIndustries.sic_code}</div>
     </div>
   );
 };

@@ -87,13 +87,21 @@ class App extends React.Component {
   };
 
   onSelectForCart = (data) => {
-    console.log("clicked a div", data);
-    this.setState({ selectedIndustries: data });
-    console.log("test state", this.state);
+    this.setState((state) => {
+      //   console.log("state value", data);
+      const selectedIndustries = state.selectedIndustries.concat(data);
+      return {
+        selectedIndustries,
+      };
+    });
+    // console.log("clicked a div", data);
+    // this.setState({ selectedIndustries: data });
+    // console.log("sel ind test", this.state.selectedIndustries);
+    // console.log("test state", this.state);
   };
 
   render() {
-    console.log("reder test", this.state.selectedIndustries);
+    // console.log("render test", this.state.selectedIndustries);
     return (
       <Container>
         <SearchBar

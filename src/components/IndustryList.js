@@ -2,6 +2,7 @@ import React from "react";
 import IndustryItem from "./IndustryItem";
 
 const IndustryList = (props) => {
+  // console.log("props from ind list", props);
   const renderedList = props.industries.map((industry) => {
     return (
       <IndustryItem
@@ -12,7 +13,7 @@ const IndustryList = (props) => {
     );
   });
 
-  if (renderedList.length != 0) {
+  if (renderedList.length !== 0) {
     return <div>{renderedList}</div>;
   } else {
     return <div>Please check your spelling</div>;
