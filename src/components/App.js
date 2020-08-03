@@ -87,6 +87,7 @@ class App extends React.Component {
   };
 
   onSelectForCart = (data) => {
+    console.log("sel cart", data);
     this.setState((state) => {
       //   console.log("state value", data);
       const selectedIndustries = state.selectedIndustries.concat(data);
@@ -94,10 +95,25 @@ class App extends React.Component {
         selectedIndustries,
       };
     });
-    // console.log("clicked a div", data);
-    // this.setState({ selectedIndustries: data });
-    // console.log("sel ind test", this.state.selectedIndustries);
-    // console.log("test state", this.state);
+  };
+
+  onRemoveFromCart = (data) => {
+    // console.log("clicked the div rmv", data.title);
+    // console.log("state rem cart", this.state.selectedIndustries);
+    let currentState = this.state.selectedIndustries;
+    let index = currentState
+      .map(function (e) {
+        return e.title;
+      })
+      .indexOf(data.title);
+    // console.log("index", index);
+
+    let currentStateArray = [...this.state.selectedIndustries];
+    if (index !== -1) {
+      currentStateArray.splice(index, 1);
+      this.setState({ selectedIndustries: currentStateArray });
+      //   console.log("state after set state", this.state);
+    }
   };
 
   render() {
@@ -120,6 +136,7 @@ class App extends React.Component {
             <SelectedIndustriesList
               selectedIndustries={this.state.selectedIndustries}
               onSelectForCart={this.onSelectForCart}
+              onRemoveFromCart={this.onRemoveFromCart}
             />
           </Col>
         </Row>
