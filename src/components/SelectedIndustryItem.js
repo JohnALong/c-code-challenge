@@ -1,9 +1,9 @@
 import React from "react";
 
-const SelectedIndustryItem = ({ selectedIndustries }) => {
+const SelectedIndustryItem = ({ selectedIndustries, onRemoveFromCart }) => {
   //   console.log("sel industry from item", selectedIndustries);
   return (
-    <div>
+    <div onClick={() => onRemoveFromCart(selectedIndustries)}>
       <div>{selectedIndustries.title}</div>
       <div>{selectedIndustries.sic_code}</div>
     </div>

@@ -7,6 +7,7 @@ const SelectedIndustriesList = (props) => {
     return (
       <SelectedIndustryItem
         selectedIndustries={industry}
+        onRemoveFromCart={props.onRemoveFromCart}
         key={industry.sic_code}
       />
     );
