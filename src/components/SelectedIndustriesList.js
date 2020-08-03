@@ -1,13 +1,12 @@
 import React from "react";
 import SelectedIndustryItem from "./SelectedIndustryItem";
 
-const SelectedIndustriesList = (props) => {
-  // console.log("props from sel ind list", props);
-  const renderedList = props.selectedIndustries.map((industry) => {
+const SelectedIndustriesList = ({ selectedIndustries, onRemoveFromCart }) => {
+  const renderedList = selectedIndustries.map((industry) => {
     return (
       <SelectedIndustryItem
         selectedIndustries={industry}
-        onRemoveFromCart={props.onRemoveFromCart}
+        onRemoveFromCart={onRemoveFromCart}
         key={industry.sic_code}
       />
     );
