@@ -1,12 +1,12 @@
 import React from "react";
 import IndustryList from "./IndustryList";
-import SelectedIndustries from "./SelectedIndustries";
+import SelectedIndustriesList from "./SelectedIndustriesList";
 import SearchBar from "./SearchBar";
 import industries from "../apis/cAPI";
 import { Container, Col, Row } from "react-bootstrap";
 
 class App extends React.Component {
-  state = { industries: [] };
+  state = { industries: [], selectedIndustries: [] };
 
   onLoad = async () => {
     const response = await industries.get();
@@ -86,7 +86,22 @@ class App extends React.Component {
     });
   };
 
+  onSelectForCart = (data) => {
+    this.setState((state) => {
+      //   console.log("state value", data);
+      const selectedIndustries = state.selectedIndustries.concat(data);
+      return {
+        selectedIndustries,
+      };
+    });
+    // console.log("clicked a div", data);
+    // this.setState({ selectedIndustries: data });
+    // console.log("sel ind test", this.state.selectedIndustries);
+    // console.log("test state", this.state);
+  };
+
   render() {
+    // console.log("render test", this.state.selectedIndustries);
     return (
       <Container>
         <SearchBar
@@ -96,10 +111,16 @@ class App extends React.Component {
         />
         <Row>
           <Col>
-            <IndustryList industries={this.state.industries} />
+            <IndustryList
+              onSelectForCart={this.onSelectForCart}
+              industries={this.state.industries}
+            />
           </Col>
           <Col>
-            <SelectedIndustries />
+            <SelectedIndustriesList
+              selectedIndustries={this.state.selectedIndustries}
+              onSelectForCart={this.onSelectForCart}
+            />
           </Col>
         </Row>
       </Container>
