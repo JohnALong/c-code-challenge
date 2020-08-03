@@ -1,23 +1,20 @@
 import React from "react";
 import IndustryItem from "./IndustryItem";
 
-const IndustryList = (props) => {
-  // console.log("props from ind list", props);
-  const renderedList = props.industries.map((industry) => {
+const IndustryList = ({ industries, onSelectForCart }) => {
+  const renderedList = industries.map((industry) => {
     return (
       <IndustryItem
         key={industry.sic_code}
         industry={industry}
-        onSelectForCart={props.onSelectForCart}
+        onSelectForCart={onSelectForCart}
       />
     );
   });
 
   if (renderedList.length !== 0) {
     return <div>{renderedList}</div>;
-  } else {
-    return <div>Please check your spelling</div>;
-  }
+  } else return <div>Please check your entry</div>;
 };
 
 export default IndustryList;

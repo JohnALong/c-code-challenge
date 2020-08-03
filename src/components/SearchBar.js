@@ -10,10 +10,7 @@ class SearchBar extends React.Component {
 
   onFirstSearchSubmit = (e) => {
     e.preventDefault();
-    if (e.target.value === "") {
-      e.preventDefault();
-    } else {
-      console.log("you're in the 1st search submit");
+    if (e.target.value !== "") {
       this.props.onTermSubmit(this.state.term);
     }
   };
@@ -23,7 +20,6 @@ class SearchBar extends React.Component {
     if (e.target.value === "") {
       e.preventDefault();
     } else {
-      console.log("you're in the 2nd search submit");
       this.props.onSicTwoSubmit(this.state.term);
     }
   };
@@ -33,7 +29,6 @@ class SearchBar extends React.Component {
     if (e.target.value === "") {
       e.preventDefault();
     } else {
-      console.log("you're in the 3rd search submit");
       this.props.onSicThreeSubmit(this.state.term);
     }
   };
@@ -43,7 +38,7 @@ class SearchBar extends React.Component {
       <Container>
         <Row>
           <form onSubmit={this.onFirstSearchSubmit}>
-            <label>Key Word Search</label>
+            <label>Key Word/Sic_Code Search</label>
             <input onChange={this.onInputChange}></input>
           </form>
           <form onSubmit={this.onSecondSearchSubmit}>

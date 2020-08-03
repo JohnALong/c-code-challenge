@@ -23,13 +23,15 @@ class App extends React.Component {
     const firstFilteredList = newFetch.data.filter((data) => {
       if (term === "") {
         this.onLoad();
-      } else if (isNaN(term) === true) {
+      } else if (
+        isNaN(term) === true &&
+        data.title.toLowerCase().includes(term.toLowerCase()) === true
+      ) {
         return data.title.toLowerCase().includes(term.toLowerCase());
       } else if (isNaN(term) === false) {
         return data.sic_code.toString().includes(term);
       } else {
-        // console.log("in the else 1");
-        return <div>Please Check Your Spelling</div>;
+        return null;
       }
     });
     this.setState({
@@ -41,19 +43,14 @@ class App extends React.Component {
     const newFetch = await industries.get();
 
     const secondFilteredList = newFetch.data.filter((data) => {
-      //   console.log("data", data.sic_code);
-      //   console.log("data to string test", data.sic_code.toString().slice(1, 2));
-
       if (term === "") {
         this.onLoad();
       } else if (isNaN(term) === false) {
-        // console.log("it's a number", term);
         if (term === data.sic_code.toString().slice(1, 2)) {
           return data.sic_code;
         }
       } else {
-        // console.log("in the else 2");
-        return <div>Please enter a single digit search parameter</div>;
+        return null;
       }
     });
     this.setState({
@@ -65,20 +62,14 @@ class App extends React.Component {
     const newFetch = await industries.get();
 
     const thirdFilteredList = newFetch.data.filter((data) => {
-      //   console.log("data", data.sic_code);
-      //   console.log("data to string test", data.sic_code.toString().slice(1, 2));
-
       if (term === "") {
         this.onLoad();
       } else if (isNaN(term) === false) {
-        // console.log("it's a number", term);
         if (term === data.sic_code.toString().slice(2, 3)) {
-          //   console.log("test 3rd box", data.sic_code.toString().slice(2, 3));
           return data.sic_code;
         }
       } else {
-        // console.log("in the else 3");
-        return <div>Please enter a single digit search parameter</div>;
+        return null;
       }
     });
     this.setState({
@@ -87,9 +78,7 @@ class App extends React.Component {
   };
 
   onSelectForCart = (data) => {
-    console.log("sel cart", data);
     this.setState((state) => {
-      //   console.log("state value", data);
       const selectedIndustries = state.selectedIndustries.concat(data);
       return {
         selectedIndustries,
@@ -98,26 +87,21 @@ class App extends React.Component {
   };
 
   onRemoveFromCart = (data) => {
-    // console.log("clicked the div rmv", data.title);
-    // console.log("state rem cart", this.state.selectedIndustries);
     let currentState = this.state.selectedIndustries;
     let index = currentState
       .map(function (e) {
         return e.title;
       })
       .indexOf(data.title);
-    // console.log("index", index);
 
     let currentStateArray = [...this.state.selectedIndustries];
     if (index !== -1) {
       currentStateArray.splice(index, 1);
       this.setState({ selectedIndustries: currentStateArray });
-      //   console.log("state after set state", this.state);
     }
   };
 
   render() {
-    // console.log("render test", this.state.selectedIndustries);
     return (
       <Container>
         <SearchBar
