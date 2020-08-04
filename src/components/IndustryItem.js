@@ -1,11 +1,12 @@
 import React from "react";
+import { Card } from "react-bootstrap";
 
 const IndustryItem = ({ industry, onSelectForCart }) => {
   return (
-    <div onClick={() => onSelectForCart(industry)}>
-      <div>{industry.title}</div>
-      <div>{industry.sic_code}</div>
-    </div>
+    <Card onClick={() => onSelectForCart(industry)}>
+      <Card.Body>Title: {industry.title}</Card.Body>
+      <Card.Body>Sic_Code: {industry.sic_code}</Card.Body>
+    </Card>
   );
 };
 

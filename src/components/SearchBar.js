@@ -1,13 +1,15 @@
 import React from "react";
-import { Container, Row } from "react-bootstrap";
+import { Container, Row, Form } from "react-bootstrap";
 
 class SearchBar extends React.Component {
   state = { term: "" };
 
+  // handle input data
   onInputChange = (e) => {
     this.setState({ term: e.target.value });
   };
 
+  // function to handle callback for term submit first search box
   onFirstSearchSubmit = (e) => {
     e.preventDefault();
     if (e.target.value !== "") {
@@ -15,6 +17,7 @@ class SearchBar extends React.Component {
     }
   };
 
+  // function to handle callbabck for 2nd digit sic_code search 2nd search box
   onSecondSearchSubmit = (e) => {
     e.preventDefault();
     if (e.target.value === "") {
@@ -24,6 +27,7 @@ class SearchBar extends React.Component {
     }
   };
 
+  // function to handle callbabck for 3rd digit sic_code search 3rd search box
   onThirdSearchSubmit = (e) => {
     e.preventDefault();
     if (e.target.value === "") {
@@ -37,18 +41,18 @@ class SearchBar extends React.Component {
     return (
       <Container>
         <Row>
-          <form onSubmit={this.onFirstSearchSubmit}>
-            <label>Key Word/Sic_Code Search</label>
-            <input onChange={this.onInputChange}></input>
-          </form>
-          <form onSubmit={this.onSecondSearchSubmit}>
-            <label>Code (2nd digit) Search</label>
-            <input onChange={this.onInputChange}></input>
-          </form>
-          <form onSubmit={this.onThirdSearchSubmit}>
-            <label>Code (3rd digit) Search</label>
-            <input onChange={this.onInputChange}></input>
-          </form>
+          <Form onSubmit={this.onFirstSearchSubmit}>
+            <Form.Label>Title/Sic_Code Search</Form.Label>
+            <Form.Control onChange={this.onInputChange}></Form.Control>
+          </Form>
+          <Form onSubmit={this.onSecondSearchSubmit}>
+            <Form.Label>Code (2nd digit) Search</Form.Label>
+            <Form.Control onChange={this.onInputChange}></Form.Control>
+          </Form>
+          <Form onSubmit={this.onThirdSearchSubmit}>
+            <Form.Label>Code (3rd digit) Search</Form.Label>
+            <Form.Control onChange={this.onInputChange}></Form.Control>
+          </Form>
         </Row>
       </Container>
     );
