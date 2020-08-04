@@ -1,5 +1,6 @@
 import React from "react";
 import SelectedIndustryItem from "./SelectedIndustryItem";
+import "./IndustryList.css";
 
 const SelectedIndustriesList = ({ selectedIndustries, onRemoveFromCart }) => {
   const renderedList = selectedIndustries.map((industry) => {
@@ -13,7 +14,12 @@ const SelectedIndustriesList = ({ selectedIndustries, onRemoveFromCart }) => {
   });
 
   if (renderedList.length !== 0) {
-    return <div>{renderedList}</div>;
+    return (
+      <div>
+        <div className="header">Selected Industries from Industry List</div>
+        <div>{renderedList}</div>
+      </div>
+    );
   } else {
     return <div>This will be the cart</div>;
   }
